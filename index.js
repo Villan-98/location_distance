@@ -1,7 +1,6 @@
 const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
-const translate = require('translate-api')
 const languages = require('language-list')();
 const app = express()
 
@@ -15,10 +14,7 @@ let language='hi'
 
 console.log(languages.getLanguageName('zh-CN')); // Bihari
 console.log(languages.getLanguageCode('urdu'))
-translate.getText(transText,{to: "ur"}).then(function(data){
-    msg=data.text
-    console.log(msg)
-}).catch();
+
 io.on('connection', function (socket) {
     console.log('Socket connected ' + socket.id)
 
@@ -106,7 +102,6 @@ io.on('connection', function (socket) {
             }
             else{
                 let msg_in="I Want to track your location"
-                translate.getText(msg_in,{to: "ur"}).then(function(data){
                     let msg_out=data.text
                     io.to(recipient).emit('chat', {
                         private: true,
@@ -117,7 +112,7 @@ io.on('connection', function (socket) {
                         socket_id:socket.id
                     })
 
-                }).catch();
+
 
             }
         }
@@ -133,7 +128,6 @@ io.on('connection', function (socket) {
 
 
             let msg_in="Tracker_stopped by "+socketIdName[socket.id].username
-            translate.getText(msg_in,{to: "ur"}).then(function(data){
                 let msg_out=data.text
 
                 io.to(socketIdName[socket.id].fetcher).emit('chat',{
@@ -142,7 +136,6 @@ io.on('connection', function (socket) {
                     message: msg_in
                 })
                 io.to(socketIdName[socket.id].fetcher).emit('disable',{})
-            }).catch();
 
         }
     )
@@ -177,8 +170,6 @@ io.on('connection', function (socket) {
 
 
         let msg_in=data.message
-        translate.getText(msg_in,{to: "ur"}).then(function(data){
-            let msg_out=data.text
 
             io.to(recipient).emit('chat', {
                 private: true,
@@ -187,7 +178,6 @@ io.on('connection', function (socket) {
                 timestamp: new Date(),
                 button:true
             })
-        }).catch();
 
 
     })
@@ -241,8 +231,6 @@ io.on('connection', function (socket) {
                 lang=socketIdName[socket.id].lang_code
             }
 
-            translate.getText(msg_in,{to:'hi'}).then(function(data){
-                msg_out=data.text
                 console.log(msg)
                 socket.emit('chat', {
                     private: true,
@@ -256,8 +244,7 @@ io.on('connection', function (socket) {
                     latitude:latf ,
                     longitude:longf,
 
-                })
-            }).catch();
+                });
             console.log("entered"+data.of1)
 
 
