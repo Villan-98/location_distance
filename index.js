@@ -9,8 +9,6 @@ const io = socketio(server)
 
 let socketIdName = {}
 let msg
-let transText = 'latitude';
-let language='hi'
 
 console.log(languages.getLanguageName('zh-CN')); // Bihari
 console.log(languages.getLanguageCode('urdu'))
@@ -223,7 +221,7 @@ io.on('connection', function (socket) {
         show_dist(lat,long,latf,longf,"K").then(function(data)
         {
             let msg_in= "longitude is"+longf+"latitude is"+latf+"approx distance"+distance1
-            let msg_out
+
             let lang=socketIdName[socket.id].lang_code
             console.log("in final"+socketIdName[socket.id].lang_code)
             let a="hi"
@@ -236,7 +234,7 @@ io.on('connection', function (socket) {
                     private: true,
                     // sender: socketIdName[data.id_of_per_giving]['username'],      why data.id_of_per_giving is undefined here
                     sender:location_of,
-                    message: msg_out,
+                    message: msg_in,
                     timestamp: new Date(),
                     map:true,
                     longitude_me:long,
@@ -294,7 +292,6 @@ io.on('connection', function (socket) {
     })
 })
 
-app.use('/loc',express.static(__dirname + '/public/second.html'))
 app.use('/', express.static(__dirname + '/public'))
 app.get('/post',(req,res)=>{
     res.send(socketIdName)
