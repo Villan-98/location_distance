@@ -1,8 +1,8 @@
-#location_tracker
+# location_tracker
 *It is an app to track location of a person. This app uses 
 browser's navigator object to get the current location.*
 
-##Technology Used
+## Technology Used
 ```
 - Used nodejs to create server
 - Used sockets.io to send and receive messages(location and permission)
@@ -24,5 +24,5 @@ Start the application:
 
 `npm start`
 
-###Developed by:
+### Developed by:
 Sachin (Villan-98)
