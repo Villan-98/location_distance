@@ -1,13 +1,22 @@
 {
   "name": "translate",
   "version": "1.0.0",
-  "description": "",
+  "description": "A location tracking app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Villan-98/location_distance.git"
+  },
+  "author": "Sachin",
   "license": "ISC",
+  "bugs":{
+    "url":"https://github.com/Villan-98/location_distance/issues"
+  },
+  "homepage":"https://github.com/Villan-98/location_distance#readme",
   "dependencies": {
     "browserify": "^16.2.3",
     "express": "^4.16.2",
